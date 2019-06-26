@@ -1,4 +1,8 @@
-type point;
+type point = {
+  .
+  "y": float,
+  "x": float,
+};
 
 [@bs.obj] external point: (~x: float, ~y: float) => point = "";
 
