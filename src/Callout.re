@@ -1,10 +1,18 @@
+type action = string;
+
+[@bs.inline]
+let calloutPress = "callout-press";
+
+[@bs.inline]
+let markerOverlayPress = "marker-overlay-press";
+
 [@react.component] [@bs.module "react-native-maps/lib/components/MapCallout"]
 // supports view props
 external make:
   (
     ~tooltip: bool=?,
     ~alphaHitTest: bool=?,
-    ~onPress: unit => unit=?,
+    ~onPress: ReactNative.Event.syntheticEvent({. action: action}) => unit=?,
     // View props
     ~accessibilityComponentType: [@bs.string] [
                                    | `none

@@ -6,4 +6,11 @@ These are complete BuckleScript bindings to [`React Native Maps`](https://github
 
 Version of these bindings follow that of the `React Native Maps` package.
 
-Documentation will be added later.
+## Modules
+
+### [MapView](docs/MapView.md)
+### [Marker](docs/Marker.md)
+### [Callout](docs/Callout.md)
+### [CalloutSubview](docs/CalloutSubview.md)
+
+Further documentation will be added later. Documentation has been adapted from that for `React Native Maps`.

@@ -1,9 +1,17 @@
+type action = string;
+
+[@bs.inline]
+let calloutInsidePress = "callout-inside-press";
+
+[@bs.inline]
+let markerInsideOverlayPress = "marker-inside-overlay-press";
+
 [@react.component]
 [@bs.module "react-native-maps/lib/components/MapCalloutSubview"]
 // supports view props
 external make:
   (
-    ~onPress: unit => unit=?,
+    ~onPress: ReactNative.Event.syntheticEvent({. action: action}) => unit=?,
     // View props
     ~accessibilityComponentType: [@bs.string] [
                                    | `none

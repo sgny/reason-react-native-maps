@@ -22,6 +22,12 @@ external edgePadding:
   (~top: float, ~right: float, ~bottom: float, ~left: float) => edgePadding =
   "";
 
+type mapBoundaries = {
+  .
+  "northEast": LatLng.t,
+  "southWest": LatLng.t,
+};
+
 type marker;
 [@bs.obj]
 external marker:
@@ -53,6 +59,17 @@ type frame = {
   "height": float,
 };
 
+type location = {
+  .
+  "latitude": float,
+  "longitude": float,
+  "altitude": float,
+  "timestamp": float,
+  "accuracy": float,
+  "altitudeAccuracy": float,
+  "speed": float,
+};
+
 [@bs.send] external getCamera: (element, unit) => unit = "";
 [@bs.send]
 external animateCamera: (element, camera, {. "duration": float}) => unit = "";
@@ -60,26 +77,9 @@ external animateCamera: (element, camera, {. "duration": float}) => unit = "";
 external setCamera: (element, camera, {. "duration": float}) => unit = "";
 [@bs.send] external animateToRegion: (element, Region.t, float) => unit = "";
 [@bs.send]
-external getMapBoundaries:
-  (element, unit) =>
-  Js.Promise.t({
-    .
-    "northEast": LatLng.t,
-    "southWest": LatLng.t,
-  }) =
+external getMapBoundaries: (element, unit) => Js.Promise.t(mapBoundaries) =
   "";
-[@bs.send]
-external setMapBoundaries:
-  (
-    element,
-    {
-      .
-      "northEast": LatLng.t,
-      "southWest": LatLng.t,
-    }
-  ) =>
-  unit =
-  "";
+[@bs.send] external setMapBoundaries: (element, mapBoundaries) => unit = "";
 [@bs.send] external setIndoorActiveLevelIndex: (element, int) => unit = "";
 [@bs.send] external fitToElements: (element, bool) => unit = "";
 [@bs.send]
@@ -146,6 +146,7 @@ external make:
                 | `mutedStandard
               ]
                 =?,
+    ~customMapStyle: array(Js.Json.t)=?,
     ~showsUserLocation: bool=?,
     ~userLocationAnnotationTitle: string=?,
     ~followsUserLocation: bool=?,
@@ -170,6 +171,11 @@ external make:
     ~loadingIndicatorColor: ReactNative.Color.t=?,
     ~loadingBackgroundColor: ReactNative.Color.t=?,
     ~moveOnMarkerPress: bool=?,
+    ~legalLabelInsets: ReactNative.View.edgeInsets=?,
+    ~kmlSrc: string=?,
+    ~compassOffset: point=?,
+    // Events
+    ~onCalloutPress: unit => unit,
     ~onRegionChange: ReactNative.Event.syntheticEvent(Region.t) => unit=?,
     ~onRegionChangeComplete: ReactNative.Event.syntheticEvent(Region.t) =>
                              unit
@@ -179,6 +185,30 @@ external make:
     ~onPanDrag: ReactNative.Event.syntheticEvent(copos) => unit=?,
     ~onPoiClick: ReactNative.Event.syntheticEvent(poi) => unit=?,
     ~onMapReady: unit => unit=?,
+    ~onMarkerPress: unit => unit=?,
+    ~onMarkerDeselect: unit => unit=?,
+    ~onMarkerSelect: unit => unit=?,
+    ~onMarkerDrag: ReactNative.Event.syntheticEvent({
+                     .
+                     coordinate: LatLng.t,
+                     position: point,
+                   }) =>
+                   unit
+                     =?,
+    ~onMarkerDragStart: ReactNative.Event.syntheticEvent({
+                          .
+                          coordinate: LatLng.t,
+                          position: point,
+                        }) =>
+                        unit
+                          =?,
+    ~onMarkerDragEnd: ReactNative.Event.syntheticEvent({
+                        .
+                        coordinate: LatLng.t,
+                        position: point,
+                      }) =>
+                      unit
+                        =?,
     ~onKmlReady: ReactNative.Event.syntheticEvent(kmlContainer) => unit=?,
     ~onIndoorLevelActivated: ReactNative.Event.syntheticEvent(indoorLevel) =>
                              unit
@@ -188,6 +218,12 @@ external make:
                               ) =>
                               unit
                                 =?,
+    ~onUserLocationChange: ReactNative.Event.syntheticEvent({
+                             .
+                             coordinate: location,
+                           }) =>
+                           unit
+                             =?,
     // View props
     ~accessibilityComponentType: [@bs.string] [
                                    | `none
