@@ -175,7 +175,7 @@ external make:
     ~kmlSrc: string=?,
     ~compassOffset: point=?,
     // Events
-    ~onCalloutPress: unit => unit,
+    ~onCalloutPress: unit => unit=?,
     ~onRegionChange: ReactNative.Event.syntheticEvent(Region.t) => unit=?,
     ~onRegionChangeComplete: ReactNative.Event.syntheticEvent(Region.t) =>
                              unit

@@ -10,6 +10,9 @@ Version of these bindings follow that of the `React Native Maps` package.
 
 ### [MapView](docs/MapView.md)
 ### [Marker](docs/Marker.md)
+### [Circle](docs/Circle.md)
+### [Polygon](docs/Polygon.md)
+### [Polyline](docs/Polyline.md)
 ### [Callout](docs/Callout.md)
 ### [CalloutSubview](docs/CalloutSubview.md)
 
