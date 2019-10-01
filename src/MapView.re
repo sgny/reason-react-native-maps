@@ -181,6 +181,7 @@ external make:
                              unit
                                =?,
     ~onPress: ReactNative.Event.syntheticEvent(copos) => unit=?,
+    ~onDoublePress: ReactNative.Event.syntheticEvent(copos) => unit=?,
     ~onLongPress: ReactNative.Event.syntheticEvent(copos) => unit=?,
     ~onPanDrag: ReactNative.Event.syntheticEvent(copos) => unit=?,
     ~onPoiClick: ReactNative.Event.syntheticEvent(poi) => unit=?,

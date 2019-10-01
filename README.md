@@ -10,10 +10,18 @@ Version of these bindings follow that of the `React Native Maps` package.
 
 ### [MapView](docs/MapView.md)
 ### [Marker](docs/Marker.md)
+### [Heatmap](docs/Heatmap.md)
 ### [Circle](docs/Circle.md)
+### [Overlay](docs/Overlay.md)
 ### [Polygon](docs/Polygon.md)
 ### [Polyline](docs/Polyline.md)
 ### [Callout](docs/Callout.md)
 ### [CalloutSubview](docs/CalloutSubview.md)
+
+## Types
+
+### [LatLng](docs/LatLng.md)
+### [Region](docs/Region.md)
+### [Shared](docs/Shared.md)
 
 Further documentation will be added later. Documentation has been adapted from that for `React Native Maps`.

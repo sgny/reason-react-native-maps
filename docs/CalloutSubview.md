@@ -18,4 +18,3 @@ Valid values are:
 
 - `calloutInsidePress` when using `MapKit`
 - `markerInsideOverlayPress` when using `GoogleMaps`
-

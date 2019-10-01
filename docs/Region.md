@@ -6,7 +6,6 @@
 
 This type needs to be created, as well as consumed. When the type is returned, individual keys may be accessed using the `##` accessor.
 
-
 ```reason
 type t = {
   .

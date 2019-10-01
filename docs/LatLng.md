@@ -1,6 +1,6 @@
 # `LatLng`
 
-## Type
+## Types
 
 ### `t`
 
@@ -16,4 +16,10 @@ type t = {
 
 ```reason
 create: (~latitude: float, ~longitude: float) => t
+```
+
+### `weighted`
+
+```reason
+weighted: (~latitude: float, ~longitude: float, ~weight: float=?, unit) => t
 ```

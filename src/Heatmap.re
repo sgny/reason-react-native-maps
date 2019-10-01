@@ -1,10 +1,23 @@
-[@react.component] [@bs.module "react-native-maps/lib/components/MapOverlay"]
-// supports view props
+type gradient;
+
+[@bs.obj]
+external gradient:
+  (
+    ~colors: array(ReactNative.Color.t),
+    ~startPoints: array(float),
+    ~colorMapSize: int=?,
+    unit
+  ) =>
+  gradient =
+  "";
+
+[@react.component] [@bs.module "react-native-maps/lib/components/MapHeatmap"]
 external make:
   (
-    ~image: ReactNative.Image.Source.t=?,
-    ~bounds: (LatLng.t, LatLng.t),
-    ~tappable: bool,
+    ~points: array(LatLng.weighted),
+    ~radius: int=?,
+    ~opacity: float=?,
+    ~gradient: gradient=?,
     // View props
     ~accessibilityComponentType: [@bs.string] [
                                    | `none

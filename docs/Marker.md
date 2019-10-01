@@ -40,12 +40,12 @@ Events return either no data or an appropriate instance of the parametrised type
 ## Methods
 
 | Method Name                 | Types of Additional Arguments | Returns | Notes                                                                                                                                                             |
-| --------------------------- | ------------------------------ | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `showCallout`               | unit                           | unit    | Shows the callout for this marker                                                                                                                                 |
-| `hideCallout`               | unit                           | unit    | Hides the callout for this marker                                                                                                                                 |
-| `redrawCallout`             | unit                           | unit    | Causes a redraw of the marker's callout. Useful for Google Maps on iOS. **Note**: iOS only.                                                                       |
-| `animateMarkerToCoordinate` | `LatLng.t`, `float`            | unit    | Animates marker movement. Coordinate should be specified as `LatLng.t` and the duration for the animation should be specified as a `float` **Note**: Android only |
-| `redraw`                    | unit                           | unit    | Causes a redraw of the marker. Useful when there are updates to the marker and `tracksViewChanges` comes with a cost that is too high.                            |
+| --------------------------- | ----------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `showCallout`               | unit                          | unit    | Shows the callout for this marker                                                                                                                                 |
+| `hideCallout`               | unit                          | unit    | Hides the callout for this marker                                                                                                                                 |
+| `redrawCallout`             | unit                          | unit    | Causes a redraw of the marker's callout. Useful for Google Maps on iOS. **Note**: iOS only.                                                                       |
+| `animateMarkerToCoordinate` | `LatLng.t`, `float`           | unit    | Animates marker movement. Coordinate should be specified as `LatLng.t` and the duration for the animation should be specified as a `float` **Note**: Android only |
+| `redraw`                    | unit                          | unit    | Causes a redraw of the marker. Useful when there are updates to the marker and `tracksViewChanges` comes with a cost that is too high.                            |
 
 ## Child Components
 
