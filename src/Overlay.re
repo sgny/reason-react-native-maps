@@ -1,9 +1,20 @@
+type point = Shared.point;
+
+let defaultAction = "overlay-press";
+
 [@react.component] [@bs.module "react-native-maps/lib/components/MapOverlay"]
-// supports view props
 external make:
   (
     ~image: ReactNative.Image.Source.t=?,
     ~bounds: (LatLng.t, LatLng.t),
+    ~onPress: ReactNative.Event.syntheticEvent({
+                .
+                "action": string,
+                "coordinate": LatLng.t,
+                "position": point,
+              }) =>
+              unit
+                =?,
     ~tappable: bool,
     // View props
     ~accessibilityComponentType: [@bs.string] [

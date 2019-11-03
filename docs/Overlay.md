@@ -10,6 +10,6 @@
 
 ## Events
 
-| Event Name | Returns | Notes                                                                       |
-| ---------- | ------- | --------------------------------------------------------------------------- |
-| `onPress`  | `unit`  | `Android only` Callback that is called when the user presses on the overlay |
+| Event Name | Returns                                                           | Notes                                                                       |
+| ---------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `onPress`  | `{. "action": string, "coordinate": LatLng.t, "position": point}` | `Android only` Callback that is called when the user presses on the overlay |

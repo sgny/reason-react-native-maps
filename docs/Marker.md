@@ -25,7 +25,13 @@
 
 ## Events
 
-Events return either no data or an appropriate instance of the parametrised type `ReactNative.Event.syntheticEvent('a)`. Accordingly, to handle events you need to pass functions of type `unit => unit` or `ReactNative.Event.syntheticEvent('a) => unit` where `'a` should be of the type specified in the table below. In the latter case, you will need to use the `##` accessor for each individual key within the function specified. For example: `onPress={e => Console.log(e##nativeEvent)}`.
+Events return either no data or an appropriate instance of the parametrised type
+`ReactNative.Event.syntheticEvent('a)`. Accordingly, to handle events you need
+to pass functions of type `unit => unit` or
+`ReactNative.Event.syntheticEvent('a) => unit` where `'a` should be of the type
+specified in the table below. In the latter case, you will need to use the `##`
+accessor for each individual key within the function specified. For example:
+`onPress={e => Console.log(e##nativeEvent)}`.
 
 | Event Name       | `'a` (if applicable) | Notes                                                                                                                                             |
 | ---------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -49,12 +55,15 @@ Events return either no data or an appropriate instance of the parametrised type
 
 ## Child Components
 
-Child components can be added within a `Marker` and rendered content will replace the marker symbol. This is a way of creating custom markers and allowing use of native SVGs.
+Child components can be added within a `Marker` and rendered content will
+replace the marker symbol. This is a way of creating custom markers and allowing
+use of native SVGs.
 
 Example:
 
 ```reason
-open ReasonReact;
+open ReactNative;
+open ReactNativeMaps;
 
 <Marker
 	...

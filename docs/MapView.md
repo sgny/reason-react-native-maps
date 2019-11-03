@@ -43,53 +43,62 @@
 | `kmlSrc`                      | `string`                                                                                                                                                                           |                 | The URL from KML file. **Note:** Google Maps and Markers only (either Android or iOS with `PROVIDER_GOOGLE`).                                                                                                                                                                                                                                                                                                  |
 | `compassOffset`               | `point`                                                                                                                                                                            |                 | If set, changes the position of the compass. **Note:** iOS Maps only.                                                                                                                                                                                                                                                                                                                                          |
 
-Please also see [Reason React Native documentation of `View` props](https://reasonml-community.github.io/reason-react-native/en/docs/components/View/) for additional supported props.
+Please also see
+[Reason React Native documentation of `View` props](https://reasonml-community.github.io/reason-react-native/en/docs/components/View/)
+for additional supported props.
 
 ## Events
 
-Events return either no data or an appropriate instance of the parametrised type `ReactNative.Event.syntheticEvent('a)`. Accordingly, to handle events you need to pass functions of type `unit => unit` or `ReactNative.Event.syntheticEvent('a) => unit` where `'a` should be of the type specified in the table below. In the latter case, you will need to use the `##` accessor for each individual key within the function specified. For example: `onPress={e => Console.log(e##nativeEvent)}`.
+Events return either no data or an appropriate instance of the parametrised type
+`ReactNative.Event.syntheticEvent('a)`. Accordingly, to handle events you need
+to pass functions of type `unit => unit` or
+`ReactNative.Event.syntheticEvent('a) => unit` where `'a` should be of the type
+specified in the table below. In the latter case, you will need to use the `##`
+accessor for each individual key within the function specified. For example:
+`onPress={e => Console.log(e##nativeEvent)}`.
 
-| Event Name                | `'a` (if applicable)        | Notes                                                                                                                                                                                                                                                         |
-| ------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `onCalloutPress`          |                             | Callback that is called when a callout is tapped by the user.                                                                                                                                                                                                 |
-| `onMapReady`              |                             | Callback that is called once the map is fully loaded.                                                                                                                                                                                                         |
-| `onKmlReady`              | `kmlContainer`              | Callback that is called once the kml is fully loaded.                                                                                                                                                                                                         |
-| `onRegionChange`          | `Region.t`                  | Callback that is called continuously when the region changes, such as when a user is dragging the map.                                                                                                                                                        |
-| `onRegionChangeComplete`  | `Region.t`                  | Callback that is called once when the region changes, such as when the user is done moving the map.                                                                                                                                                           |
-| `onUserLocationChange`    | `{. coordinate: location }` | Callback that is called when the underlying map figures our users current location (coordinate also includes isFromMockProvider value for Android API 18 and above). Make sure **showsUserLocation** is set to _true_ and that the provider is `` `google ``. |
-| `onPress`                 | `copos`                     | Callback that is called when user taps on the map.                                                                                                                                                                                                            |
-| `onDoublePress`           | `copos`                     | Callback that is called when user double taps on the map.                                                                                                                                                                                                     |
-| `onPanDrag`               | `copos`                     | Callback that is called when user presses and drags the map. **NOTE**: for iOS `scrollEnabled` should be set to `false` to trigger the event                                                                                                                  |
-| `onPoiClick`              | `poi`                       | Callback that is called when user click on a POI.                                                                                                                                                                                                             |
-| `onLongPress`             | `copos`                     | Callback that is called when user makes a "long press" somewhere on the map.                                                                                                                                                                                  |
-| `onMarkerPress`           |                             | Callback that is called when a marker on the map is tapped by the user.                                                                                                                                                                                       |
-| `onMarkerSelect`          |                             | Callback that is called when a marker on the map becomes selected. This will be called when the callout for that marker is about to be shown. **Note**: iOS only.                                                                                             |
-| `onMarkerDeselect`        |                             | Callback that is called when a marker on the map becomes deselected. This will be called when the callout for that marker is about to be hidden. **Note**: iOS only.                                                                                          |
-| `onMarkerDragStart`       | `copos`                     | Callback that is called when the user initiates a drag on a marker (if it is draggable)                                                                                                                                                                       |
-| `onMarkerDrag`            | `copos`                     | Callback called continuously as a marker is dragged                                                                                                                                                                                                           |
-| `onMarkerDragEnd`         | `copos`                     | Callback that is called when a drag on a marker finishes. This is usually the point you will want to setState on the marker's coordinate again                                                                                                                |
-| `onIndoorLevelActivated`  | `indoorLevel`               | Callback that is called when a level on indoor building is activated                                                                                                                                                                                          |
-| `onIndoorBuildingFocused` | `indoorBuilding`            | Callback that is called when a indoor building is focused/unfocused                                                                                                                                                                                           |
+| Event Name                | `'a` (if applicable)          | Notes                                                                                                                                                                                                                                                         |
+| ------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onCalloutPress`          |                               | Callback that is called when a callout is tapped by the user.                                                                                                                                                                                                 |
+| `onMapReady`              |                               | Callback that is called once the map is fully loaded.                                                                                                                                                                                                         |
+| `onKmlReady`              | `kmlContainer`                | Callback that is called once the kml is fully loaded.                                                                                                                                                                                                         |
+| `onRegionChange`          | `Region.t`                    | Callback that is called continuously when the region changes, such as when a user is dragging the map.                                                                                                                                                        |
+| `onRegionChangeComplete`  | `Region.t`                    | Callback that is called once when the region changes, such as when the user is done moving the map.                                                                                                                                                           |
+| `onUserLocationChange`    | `{. "coordinate": location }` | Callback that is called when the underlying map figures our users current location (coordinate also includes isFromMockProvider value for Android API 18 and above). Make sure **showsUserLocation** is set to _true_ and that the provider is `` `google ``. |
+| `onPress`                 | `copos`                       | Callback that is called when user taps on the map.                                                                                                                                                                                                            |
+| `onDoublePress`           | `copos`                       | Callback that is called when user double taps on the map.                                                                                                                                                                                                     |
+| `onPanDrag`               | `copos`                       | Callback that is called when user presses and drags the map. **NOTE**: for iOS `scrollEnabled` should be set to `false` to trigger the event                                                                                                                  |
+| `onPoiClick`              | `poi`                         | Callback that is called when user click on a POI.                                                                                                                                                                                                             |
+| `onLongPress`             | `copos`                       | Callback that is called when user makes a "long press" somewhere on the map.                                                                                                                                                                                  |
+| `onMarkerPress`           |                               | Callback that is called when a marker on the map is tapped by the user.                                                                                                                                                                                       |
+| `onMarkerSelect`          |                               | Callback that is called when a marker on the map becomes selected. This will be called when the callout for that marker is about to be shown. **Note**: iOS only.                                                                                             |
+| `onMarkerDeselect`        |                               | Callback that is called when a marker on the map becomes deselected. This will be called when the callout for that marker is about to be hidden. **Note**: iOS only.                                                                                          |
+| `onMarkerDragStart`       | `copos`                       | Callback that is called when the user initiates a drag on a marker (if it is draggable)                                                                                                                                                                       |
+| `onMarkerDrag`            | `copos`                       | Callback called continuously as a marker is dragged                                                                                                                                                                                                           |
+| `onMarkerDragEnd`         | `copos`                       | Callback that is called when a drag on a marker finishes. This is usually the point you will want to setState on the marker's coordinate again                                                                                                                |
+| `onIndoorLevelActivated`  | `indoorLevel`                 | Callback that is called when a level on indoor building is activated                                                                                                                                                                                          |
+| `onIndoorBuildingFocused` | `indoorBuilding`              | Callback that is called when a indoor building is focused/unfocused                                                                                                                                                                                           |
 
 ## Methods
 
-Deprecated methods are not supported. All methods require the `MapView` element as the first argument. For additional arguments please refer to the table below.
+Deprecated methods are not supported. All methods require the `MapView` element
+as the first argument. For additional arguments please refer to the table below.
 
-| Method Name                 | Types of Additional Arguments                                            | Returns                                                          | Notes                                                                                                                                                                                                                                                                                                          |
-| --------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `getCamera`                 | unit                                                                     | `camera`                                                         | Returns the current camera configuration.                                                                                                                                                                                                                                                                      |
-| `animateCamera`             | `camera`,<br/> `{. duration: float }`                                    | unit                                                             | Animate the camera to a new view. In JS, you can pass a partial camera object here; any property not given will remain unmodified, however, that is not supported in these bindings and a camera object is required. Do note that any optional arguments not specified in the new object will not be modified. |
-| `setCamera`                 | `camera`, <br/>`{. duration: float }`                                    | unit                                                             | Like `animateCamera`, but sets the new view instantly, without an animation.                                                                                                                                                                                                                                   |
-| `animateToRegion`           | `Region.t`, `float`                                                      | unit                                                             | duration of the animation should be specified as a `float`                                                                                                                                                                                                                                                     |
-| `getMapBoundaries`          | unit                                                                     | `Js.Promise.t(mapBoundaries)`                                    | Returns current boundaries of the map                                                                                                                                                                                                                                                                          |
-| `setMapBoundaries`          | `mapBoundaries`                                                          | unit                                                             | The boundary is defined by the map's center coordinates, not the device's viewport itself. **Note:** Google Maps only.                                                                                                                                                                                         |
-| `setIndoorActiveLevelIndex` | `int`                                                                    | unit                                                             | `levelIndex` should be specified as an `int`                                                                                                                                                                                                                                                                   |
-| `fitToElements`             | `bool`                                                                   | unit                                                             | Can specify whether the transition should be animated by the additonal argument                                                                                                                                                                                                                                |
-| `fitToSuppliedMarkers`      | `array(string)`, <br/> `{. edgePadding: edgePadding, animated: bool }`   | unit                                                             | markerIDs should be specified as `array(string)` If you need to use this in `ComponentDidMount`, make sure you put it in a timeout or it will cause performance problems.                                                                                                                                      |
-| `fitToCoordinates`          | `array(LatLng.t)`, <br/> `{. edgePadding: edgePadding, animated: bool }` | unit                                                             | Coordinates should be specified as an array of `LatLng.t`. Options may also be specified. If called in `ComponentDidMount` in android, it will cause an exception. It is recommended to be called from the MapView `onLayout` event.                                                                           |
-| `pointForCoordinate`        | `LatLng.t`                                                               | `Js.Promise.t(point)`                                            | Converts a map coordinate (specified as `LatLng.t`) to a view coordinate (`point`).                                                                                                                                                                                                                            |
-| `coordinateForPoint`        | `point`                                                                  | `Js.Promise.t(LatLng.t)`                                         | Converts a view coordinate (`point`) to a map coordinate (specified as `LatLng.t`).                                                                                                                                                                                                                            |
-| `getMarkersFrames`          | `bool`                                                                   | `Js.Promise.t({. "markerID": {. point: point, frame: frame } })` | Get markers' centers and frames in view coordinates, can limit to only visible markers by the additional argument. **Note**: iOS only.                                                                                                                                                                         |
+| Method Name                 | Types of Additional Arguments        | Returns                                                          | Notes                                                                                                                                                                                                                                                                                                          |
+| --------------------------- | ------------------------------------ | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `getCamera`                 | unit                                 | `camera`                                                         | Returns the current camera configuration.                                                                                                                                                                                                                                                                      |
+| `animateCamera`             | `camera`,<br/> `duration`            | unit                                                             | Animate the camera to a new view. In JS, you can pass a partial camera object here; any property not given will remain unmodified, however, that is not supported in these bindings and a camera object is required. Do note that any optional arguments not specified in the new object will not be modified. |
+| `setCamera`                 | `camera`, <br/>`duration`            | unit                                                             | Like `animateCamera`, but sets the new view instantly, without an animation.                                                                                                                                                                                                                                   |
+| `animateToRegion`           | `Region.t`, `float`                  | unit                                                             | duration of the animation should be specified as a `float`                                                                                                                                                                                                                                                     |
+| `getMapBoundaries`          | unit                                 | `Js.Promise.t(mapBoundaries)`                                    | Returns current boundaries of the map                                                                                                                                                                                                                                                                          |
+| `setMapBoundaries`          | `mapBoundaries`                      | unit                                                             | The boundary is defined by the map's center coordinates, not the device's viewport itself. **Note:** Google Maps only.                                                                                                                                                                                         |
+| `setIndoorActiveLevelIndex` | `int`                                | unit                                                             | `levelIndex` should be specified as an `int`                                                                                                                                                                                                                                                                   |
+| `fitToElements`             | `bool`                               | unit                                                             | Can specify whether the transition should be animated by the additonal argument                                                                                                                                                                                                                                |
+| `fitToSuppliedMarkers`      | `array(string)`, <br/> `fitConfig`   | unit                                                             | markerIDs should be specified as `array(string)` If you need to use this in `ComponentDidMount`, make sure you put it in a timeout or it will cause performance problems.                                                                                                                                      |
+| `fitToCoordinates`          | `array(LatLng.t)`, <br/> `fitConfig` | unit                                                             | Coordinates should be specified as an array of `LatLng.t`. Options may also be specified. If called in `ComponentDidMount` in android, it will cause an exception. It is recommended to be called from the MapView `onLayout` event.                                                                           |
+| `pointForCoordinate`        | `LatLng.t`                           | `Js.Promise.t(point)`                                            | Converts a map coordinate (specified as `LatLng.t`) to a view coordinate (`point`).                                                                                                                                                                                                                            |
+| `coordinateForPoint`        | `point`                              | `Js.Promise.t(LatLng.t)`                                         | Converts a view coordinate (`point`) to a map coordinate (specified as `LatLng.t`).                                                                                                                                                                                                                            |
+| `getMarkersFrames`          | `bool`                               | `Js.Promise.t({. "markerID": {. point: point, frame: frame } })` | Get markers' centers and frames in view coordinates, can limit to only visible markers by the additional argument. **Note**: iOS only.                                                                                                                                                                         |
 
 ## Types
 
@@ -108,41 +117,50 @@ camera:
   camera
 ```
 
-Note that `altitude` is only for when `MapKit` is used on iOS and `zoom` is only for use with Google Maps. Specification of height differs between MapKit on iOS and Google Maps differ. For a cross-platform app, it is necessary to specify both the zoom level and the altitude separately.
+Note that `altitude` is only for when `MapKit` is used on iOS and `zoom` is only
+for use with Google Maps. Specification of height differs between MapKit on iOS
+and Google Maps differ. For a cross-platform app, it is necessary to specify
+both the zoom level and the altitude separately.
 
 ### `location`
 
-```
-type location {
-  latitude: Number,
-  longitude: Number,
-  altitude: Number,
-  timestamp: Number, //Milliseconds since Unix epoch
-  accuracy: Number,
-  altitudeAccuracy: Number,
-  speed: Number,
-}
+```reason
+type location = {
+  .
+  "latitude": float,
+  "longitude": float,
+  "altitude": float,
+  "timestamp": float,
+  "accuracy": float,
+  "altitudeAccuracy": float,
+  "speed": float,
+};
 ```
 
-### `point`
+`timestamp` is milliseconds elapsed since the epoch
 
+### `duration`
+
+```reason
+duration: (~duration: float) => duration
 ```
-type point {
-  x: Number,
-  y: Number,
-}
+
+### `fitConfig`
+
+```reason
+fitConfig: (~edgePadding: edgePadding, ~animated: bool) => fitConfig
 ```
 
 ### `frame`
 
-```
+```reason
 type frame = {
   .
   "x": float,
   "y": float,
   "width": float,
   "height": float,
-}
+};
 ```
 
 ### `edgePadding`
@@ -160,6 +178,12 @@ type mapBoundaries = {
   "northEast": LatLng.t,
   "southWest": LatLng.t,
 }
+```
+
+```reason
+mapBoundaries:
+  (~northEast: LatLng.t, ~southWest: LatLng.t) =>
+  mapBoundaries
 ```
 
 ### `marker`

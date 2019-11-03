@@ -1,6 +1,12 @@
 {
   "name": "reason-react-native-maps",
-  "version": "0.24.1",
+  "version": "0.26.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react-native-maps": "~0.26.0"
+  },
   "author": "sgny (https://github.com/sgny)",
   "repository": "https://github.com/sgny/reason-react-native-maps.git",
   "license": "MIT",
@@ -11,19 +17,56 @@
     "react-native",
     "react-native-maps"
   ],
+  "files": [
+    "*",
+    "!.DS_Store",
+    "!**/*.bs.js",
+    "!.merlin",
+    "!lib/bs",
+    "!lib/ocaml"
+  ],
+  "scripts": {
+    "format:most": "prettier --write \"**/*.{md,json,js,css}\"",
+    "format:re": "find . -name \"*.re\" -or -name \"*.rei\" | grep -v \"node_modules\" | xargs bsrefmt --in-place",
+    "format": "yarn format:most && yarn format:re",
+    "re:start": "bsb -make-world -w",
+    "re:build": "bsb -make-world",
+    "re:clean-build": "bsb -clean-world -make-world",
+    "start": "yarn re:start",
+    "build": "yarn re:build",
+    "test": "yarn re:clean-build"
+  },
   "scripts": {
     "clean": "bsb -clean-world",
     "start": "bsb -make-world -w",
     "build": "bsb -make-world",
     "clean-build": "bsb -clean-world -make-world"
   },
-  "peerDependencies": {
-    "bs-platform": "~5.0.4",
-    "react-native": "~0.59.9",
+  "devDependencies": {
+    "bs-platform": "^5.2.0",
+    "husky": "^1.3.0",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.18.0",
     "reason-react": "^0.7.0",
     "reason-react-native": "^0.60.0"
   },
-  "dependencies": {
-    "react-native-maps": "~0.24.0"
+  "prettier": {
+    "trailingComma": "all",
+    "proseWrap": "always"
+  },
+  "lint-staged": {
+    "*.{md,json,js,css}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{re,rei}": [
+      "bsrefmt --in-place",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

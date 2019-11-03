@@ -13,7 +13,9 @@
 
 ### `gradient`
 
-[Android Doc](https://developers.google.com/maps/documentation/android-sdk/utility/heatmap#custom) | [iOS Doc](https://developers.google.com/maps/documentation/ios-sdk/utility/heatmap#customize)
+[Android Doc](https://developers.google.com/maps/documentation/android-sdk/utility/heatmap#custom)
+|
+[iOS Doc](https://developers.google.com/maps/documentation/ios-sdk/utility/heatmap#customize)
 
 | Prop           | Type                         | Default | Note                                                                                                                                  |
 | -------------- | ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |

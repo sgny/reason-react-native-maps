@@ -27,6 +27,10 @@ type mapBoundaries = {
   "northEast": LatLng.t,
   "southWest": LatLng.t,
 };
+[@bs.obj]
+external mapBoundaries:
+  (~northEast: LatLng.t, ~southWest: LatLng.t) => mapBoundaries =
+  "";
 
 type marker;
 [@bs.obj]
@@ -70,11 +74,17 @@ type location = {
   "speed": float,
 };
 
+type duration;
+[@bs.obj] external duration: (~duration: float) => duration = "";
+
+type fitConfig;
+[@bs.obj]
+external fitConfig: (~edgePadding: edgePadding, ~animated: bool) => fitConfig =
+  "";
+
 [@bs.send] external getCamera: (element, unit) => unit = "";
-[@bs.send]
-external animateCamera: (element, camera, {. "duration": float}) => unit = "";
-[@bs.send]
-external setCamera: (element, camera, {. "duration": float}) => unit = "";
+[@bs.send] external animateCamera: (element, camera, duration) => unit = "";
+[@bs.send] external setCamera: (element, camera, duration) => unit = "";
 [@bs.send] external animateToRegion: (element, Region.t, float) => unit = "";
 [@bs.send]
 external getMapBoundaries: (element, unit) => Js.Promise.t(mapBoundaries) =
@@ -83,31 +93,10 @@ external getMapBoundaries: (element, unit) => Js.Promise.t(mapBoundaries) =
 [@bs.send] external setIndoorActiveLevelIndex: (element, int) => unit = "";
 [@bs.send] external fitToElements: (element, bool) => unit = "";
 [@bs.send]
-external fitToSuppliedMarkers:
-  (
-    element,
-    array(string),
-    {
-      .
-      "edgePadding": edgePadding,
-      "animated": bool,
-    }
-  ) =>
-  unit =
+external fitToSuppliedMarkers: (element, array(string), fitConfig) => unit =
   "";
 [@bs.send]
-external fitToCoordinates:
-  (
-    element,
-    array(LatLng.t),
-    {
-      .
-      "edgePadding": edgePadding,
-      "animated": bool,
-    }
-  ) =>
-  unit =
-  "";
+external fitToCoordinates: (element, array(LatLng.t), fitConfig) => unit = "";
 [@bs.send]
 external pointForCoordinate: (element, LatLng.t) => Js.Promise.t(point) = "";
 [@bs.send]

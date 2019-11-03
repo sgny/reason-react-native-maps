@@ -9,7 +9,11 @@
 
 ## Events
 
-Callback that is called when the user presses on the callout. The `onPress` event returns `ReactNative.Event.syntheticEvent({. action: action})`. Accordingly, to handle the event you need to pass a function of type `ReactNative.Event.syntheticEvent({. action: action}) => unit`. You will need to use the `##` accessor for each individual key within the function specified.
+Callback that is called when the user presses on the callout. The `onPress`
+event returns `ReactNative.Event.syntheticEvent({. action: action})`.
+Accordingly, to handle the event you need to pass a function of type
+`ReactNative.Event.syntheticEvent({. action: action}) => unit`. You will need to
+use the `##` accessor for each individual key within the function specified.
 
 ## Types
 
