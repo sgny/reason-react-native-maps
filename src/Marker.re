@@ -1,10 +1,10 @@
+include NativeElement;
 include Shared;
-
-type element;
 
 [@react.component] [@bs.module "react-native-maps/lib/components/MapMarker"]
 external make:
   (
+    ~ref: ref=?,
     ~title: string=?,
     ~description: string=?,
     ~image: ReactNative.Image.Source.t=?,

@@ -1,6 +1,5 @@
+include NativeElement;
 include Shared;
-
-type element;
 
 type camera;
 [@bs.obj]
@@ -117,6 +116,7 @@ external getMarkersFrames:
 [@react.component] [@bs.module "react-native-maps/lib/components/MapView"]
 external make:
   (
+    ~ref: ref=?,
     ~provider: [@bs.string] [ | `google]=?,
     ~region: Region.t,
     ~initialRegion: Region.t,
