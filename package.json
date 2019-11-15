@@ -1,6 +1,6 @@
 {
   "name": "reason-react-native-maps",
-  "version": "0.26.1",
+  "version": "0.26.2",
   "publishConfig": {
     "access": "public"
   },
@@ -23,7 +23,10 @@
     "!**/*.bs.js",
     "!.merlin",
     "!lib/bs",
-    "!lib/ocaml"
+    "!lib/ocaml",
+    "!.gitignore",
+    "!**/debug.log",
+    "!**/build.yml"
   ],
   "scripts": {
     "format:most": "prettier --write \"**/*.{md,json,js,css}\"",

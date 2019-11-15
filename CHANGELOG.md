@@ -1,5 +1,13 @@
 # Changelog of `reason-react-native-maps`
 
+## 0.26.2 - 2019-11-15
+
+Added `LocalTile`, `UrlTile` and `WMSTile` components for custom tile overlays.
+
+## 0.26.1 - 2019-11-15
+
+Added `ref` prop to `MapView` and `Marker`
+
 ## 0.26.0 - 2019-11-1
 
 Note that there are breaking changes in this release:
