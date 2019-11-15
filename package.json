@@ -36,12 +36,6 @@
     "build": "yarn re:build",
     "test": "yarn re:clean-build"
   },
-  "scripts": {
-    "clean": "bsb -clean-world",
-    "start": "bsb -make-world -w",
-    "build": "bsb -make-world",
-    "clean-build": "bsb -clean-world -make-world"
-  },
   "devDependencies": {
     "bs-platform": "^5.2.0",
     "husky": "^1.3.0",
