@@ -165,10 +165,8 @@ external make:
     ~compassOffset: point=?,
     // Events
     ~onCalloutPress: unit => unit=?,
-    ~onRegionChange: ReactNative.Event.syntheticEvent(Region.t) => unit=?,
-    ~onRegionChangeComplete: ReactNative.Event.syntheticEvent(Region.t) =>
-                             unit
-                               =?,
+    ~onRegionChange: Region.t => unit=?,
+    ~onRegionChangeComplete: Region.t => unit=?,
     ~onPress: ReactNative.Event.syntheticEvent(copos) => unit=?,
     ~onDoublePress: ReactNative.Event.syntheticEvent(copos) => unit=?,
     ~onLongPress: ReactNative.Event.syntheticEvent(copos) => unit=?,

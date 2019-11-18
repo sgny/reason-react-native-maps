@@ -49,30 +49,50 @@ for additional supported props.
 
 ## Events
 
-Events return either no data or an appropriate instance of the parametrised type
-`ReactNative.Event.syntheticEvent('a)`. Accordingly, to handle events you need
-to pass functions of type `unit => unit` or
-`ReactNative.Event.syntheticEvent('a) => unit` where `'a` should be of the type
-specified in the table below. In the latter case, you will need to use the `##`
-accessor for each individual key within the function specified. For example:
-`onPress={e => Console.log(e##nativeEvent)}`.
+Events may return no data (`unit`), `Region.t` or
+`ReactNative.Event.syntheticEvent('a)`.
 
-| Event Name                | `'a` (if applicable)          | Notes                                                                                                                                                                                                                                                         |
+### Events returning `unit`
+
+Handler function needs to be of type `unit => unit`.
+
+| Event Name         | Notes                                                                                                                                                                |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onCalloutPress`   | Callback that is called when a callout is tapped by the user.                                                                                                        |
+| `onMapReady`       | Callback that is called once the map is fully loaded.                                                                                                                |
+| `onMarkerPress`    | Callback that is called when a marker on the map is tapped by the user.                                                                                              |
+| `onMarkerSelect`   | Callback that is called when a marker on the map becomes selected. This will be called when the callout for that marker is about to be shown. **Note**: iOS only.    |
+| `onMarkerDeselect` | Callback that is called when a marker on the map becomes deselected. This will be called when the callout for that marker is about to be hidden. **Note**: iOS only. |
+
+### Events returning `Region.t`
+
+Handler function needs to be of type `Region.t => unit`.
+
+| Event Name               | Notes                                                                                                  |
+| ------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `onRegionChange`         | Callback that is called continuously when the region changes, such as when a user is dragging the map. |
+| `onRegionChangeComplete` | Callback that is called once when the region changes, such as when the user is done moving the map.    |
+
+### Events returning `ReactNative.Event.syntheticEvent('a)`
+
+Events listed below return an appropriate instance of the parametrised type
+`ReactNative.Event.syntheticEvent('a)` where `'a` is specified in the table
+below. Handler function needs to be of type
+`ReactNative.Event.syntheticEvent('a) => unit`.
+
+You will need to use the `##` accessor for each individual key within the
+function specified. For example:
+`onPress={e => Js.Console.warn(e##nativeEvent)}`.
+
+| Event Name                | `'a`                          | Notes                                                                                                                                                                                                                                                         |
 | ------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `onCalloutPress`          |                               | Callback that is called when a callout is tapped by the user.                                                                                                                                                                                                 |
-| `onMapReady`              |                               | Callback that is called once the map is fully loaded.                                                                                                                                                                                                         |
 | `onKmlReady`              | `kmlContainer`                | Callback that is called once the kml is fully loaded.                                                                                                                                                                                                         |
-| `onRegionChange`          | `Region.t`                    | Callback that is called continuously when the region changes, such as when a user is dragging the map.                                                                                                                                                        |
-| `onRegionChangeComplete`  | `Region.t`                    | Callback that is called once when the region changes, such as when the user is done moving the map.                                                                                                                                                           |
 | `onUserLocationChange`    | `{. "coordinate": location }` | Callback that is called when the underlying map figures our users current location (coordinate also includes isFromMockProvider value for Android API 18 and above). Make sure **showsUserLocation** is set to _true_ and that the provider is `` `google ``. |
 | `onPress`                 | `copos`                       | Callback that is called when user taps on the map.                                                                                                                                                                                                            |
 | `onDoublePress`           | `copos`                       | Callback that is called when user double taps on the map.                                                                                                                                                                                                     |
 | `onPanDrag`               | `copos`                       | Callback that is called when user presses and drags the map. **NOTE**: for iOS `scrollEnabled` should be set to `false` to trigger the event                                                                                                                  |
 | `onPoiClick`              | `poi`                         | Callback that is called when user click on a POI.                                                                                                                                                                                                             |
 | `onLongPress`             | `copos`                       | Callback that is called when user makes a "long press" somewhere on the map.                                                                                                                                                                                  |
-| `onMarkerPress`           |                               | Callback that is called when a marker on the map is tapped by the user.                                                                                                                                                                                       |
-| `onMarkerSelect`          |                               | Callback that is called when a marker on the map becomes selected. This will be called when the callout for that marker is about to be shown. **Note**: iOS only.                                                                                             |
-| `onMarkerDeselect`        |                               | Callback that is called when a marker on the map becomes deselected. This will be called when the callout for that marker is about to be hidden. **Note**: iOS only.                                                                                          |
 | `onMarkerDragStart`       | `copos`                       | Callback that is called when the user initiates a drag on a marker (if it is draggable)                                                                                                                                                                       |
 | `onMarkerDrag`            | `copos`                       | Callback called continuously as a marker is dragged                                                                                                                                                                                                           |
 | `onMarkerDragEnd`         | `copos`                       | Callback that is called when a drag on a marker finishes. This is usually the point you will want to setState on the marker's coordinate again                                                                                                                |
