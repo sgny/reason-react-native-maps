@@ -24,3 +24,12 @@ create: (~latitude: float, ~longitude: float) => t
 ```reason
 weighted: (~latitude: float, ~longitude: float, ~weight: float=?, unit) => t
 ```
+
+### `animated`
+
+This can be created using the `createAnimated` method, given an object of type
+`t`.
+
+```reason
+createAnimated: t => animated
+```

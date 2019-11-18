@@ -31,8 +31,8 @@ With `npm`:
 npm install reason-react-native-maps
 ```
 
-`react-native-maps` should be properly installed if you are using React Native
-versions below 0.60 linked. Please refer to the relevant
+`react-native-maps` should be properly installed, and linked if you are using
+React Native versions below 0.60. Please refer to the relevant
 [instructions](https://github.com/react-native-community/react-native-maps/blob/master/docs/installation.md).
 
 Finally, `reason-react-native-maps` should be added to `bs-dependencies` in
@@ -50,7 +50,11 @@ Finally, `reason-react-native-maps` should be added to `bs-dependencies` in
 
 ### [MapView](docs/MapView.md)
 
+### [MapView.Animated](docs/MapViewAnimated.md)
+
 ### [Marker](docs/Marker.md)
+
+### [Marker.Animated](docs/MarkerAnimated.md)
 
 ### [Heatmap](docs/Heatmap.md)
 

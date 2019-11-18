@@ -40,3 +40,12 @@ create:
 A
 [visual explanation](https://stackoverflow.com/questions/36685372/how-to-zoom-in-out-in-react-native-map/36688156#36688156)
 may be found on `stackoverflow`.
+
+### `animated`
+
+This can be created using the `createAnimated` method, given an object of type
+`t`.
+
+```reason
+createAnimated: t => animated
+```

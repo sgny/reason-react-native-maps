@@ -16,3 +16,8 @@ external create:
   ) =>
   t =
   "";
+
+type animated;
+
+[@bs.new] [@bs.module "react-native-maps/lib/components/AnimatedRegion"]
+external createAnimated: t => animated = "default";

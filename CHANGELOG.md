@@ -1,5 +1,12 @@
 # Changelog of `reason-react-native-maps`
 
+## 0.26.3 - 2019-11-18
+
+Added support for Animated components with the introduction of
+
+- `MapView.Animated` and `Marker.Animated` components
+- `Region.animated` and `LatLng.animated` types
+
 ## 0.26.2 - 2019-11-15
 
 Added `LocalTile`, `UrlTile` and `WMSTile` components for custom tile overlays.
