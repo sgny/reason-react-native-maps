@@ -1,8 +1,5 @@
 # BuckleScript bindings to React Native Maps
 
-_This branch does not support `GeoJSON`. Please use the `geojson` branch and the
-`reason-react-native-maps-geojson` package if you need support for that format._
-
 [![Build Status](https://github.com/sgny/reason-react-native-maps/workflows/Build/badge.svg)](https://github.com/sgny/reason-react-native-maps/actions)
 [![Version](https://img.shields.io/npm/v/reason-react-native-maps.svg)](https://www.npmjs.com/package/reason-react-native-maps)
 
@@ -69,6 +66,8 @@ Finally, `reason-react-native-maps` should be added to `bs-dependencies` in
 ### [Callout](docs/Callout.md)
 
 ### [CalloutSubview](docs/CalloutSubview.md)
+
+### [Geojson](docs/Geojson.md)
 
 ## Types
 

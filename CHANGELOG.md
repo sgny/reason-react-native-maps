@@ -1,5 +1,9 @@
 # Changelog of `reason-react-native-maps`
 
+## 0.26.4 - 2019-11-28
+
+Added support for GeoJSON.
+
 ## 0.26.3 - 2019-11-18
 
 Added support for Animated components with the introduction of
