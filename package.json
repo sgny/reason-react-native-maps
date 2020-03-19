@@ -1,11 +1,11 @@
 {
   "name": "reason-react-native-maps",
-  "version": "0.26.4",
+  "version": "0.27.0",
   "publishConfig": {
     "access": "public"
   },
   "peerDependencies": {
-    "react-native-maps": "~0.26.0"
+    "react-native-maps": "~0.27.0"
   },
   "author": "sgny (https://github.com/sgny)",
   "repository": "https://github.com/sgny/reason-react-native-maps.git",

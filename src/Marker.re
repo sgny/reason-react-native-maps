@@ -18,6 +18,7 @@ module Make = (T: {type t;}) => {
       ~calloutAnchor: point=?,
       ~flat: bool=?,
       ~identifier: string=?,
+      ~isPreselected: bool=?,
       ~rotation: float=?,
       ~draggable: bool=?,
       ~tracksViewChanges: bool=?,

@@ -143,6 +143,15 @@ module Make = (T: {type t;}) => {
       ~customMapStyle: array(Js.Json.t)=?,
       ~showsUserLocation: bool=?,
       ~userLocationAnnotationTitle: string=?,
+      ~userLocationFastestInterval: float=?,
+      ~userLocationPriority: [@bs.string] [
+                               | `balanced
+                               | `high
+                               | `low
+                               | `passive
+                             ]
+                               =?,
+      ~userLocationUpdateInterval: float=?,
       ~followsUserLocation: bool=?,
       ~showsMyLocationButton: bool=?,
       ~showsPointsOfInterest: bool=?,
@@ -168,6 +177,7 @@ module Make = (T: {type t;}) => {
       ~legalLabelInsets: ReactNative.View.edgeInsets=?,
       ~kmlSrc: string=?,
       ~compassOffset: point=?,
+      ~isAccessibilityElement: bool=?,
       // Events
       ~onCalloutPress: unit => unit=?,
       ~onRegionChange: Region.t => unit=?,

@@ -1,5 +1,9 @@
 # Changelog of `reason-react-native-maps`
 
+## 0.27.0 - 2020-03-19
+
+Added `Overlay.Animated` component
+
 ## 0.26.4 - 2019-11-28
 
 Added support for GeoJSON.
