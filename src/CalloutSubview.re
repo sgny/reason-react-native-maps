@@ -6,12 +6,17 @@ let calloutInsidePress = "callout-inside-press";
 [@bs.inline]
 let markerInsideOverlayPress = "marker-inside-overlay-press";
 
+module OnPressEvent =
+  ReactNative.Event.SyntheticEvent({
+    type _payload = {. action: action};
+  });
+
 [@react.component]
 [@bs.module "react-native-maps/lib/components/MapCalloutSubview"]
 // supports view props
 external make:
   (
-    ~onPress: ReactNative.Event.syntheticEvent({. action: action}) => unit=?,
+    ~onPress: OnPressEvent.t => unit=?,
     // View props
     ~accessibilityComponentType: [@bs.string] [
                                    | `none
@@ -39,7 +44,7 @@ external make:
                           | `imagebutton
                         ]
                           =?,
-    ~accessibilityStates: array(ReactNative.AccessibilityState.t)=?,
+    ~accessibilityStates: array(ReactNative.Accessibility.state)=?,
     ~accessibilityTraits: array(ReactNative.AccessibilityTrait.t)=?,
     ~accessibilityViewIsModal: bool=?,
     ~accessible: bool=?,

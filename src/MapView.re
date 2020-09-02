@@ -12,14 +12,12 @@ external camera:
     ~zoom: int=?,
     unit
   ) =>
-  camera =
-  "";
+  camera;
 
 type edgePadding;
 [@bs.obj]
 external edgePadding:
-  (~top: float, ~right: float, ~bottom: float, ~left: float) => edgePadding =
-  "";
+  (~top: float, ~right: float, ~bottom: float, ~left: float) => edgePadding;
 
 type mapBoundaries = {
   .
@@ -28,15 +26,13 @@ type mapBoundaries = {
 };
 [@bs.obj]
 external mapBoundaries:
-  (~northEast: LatLng.t, ~southWest: LatLng.t) => mapBoundaries =
-  "";
+  (~northEast: LatLng.t, ~southWest: LatLng.t) => mapBoundaries;
 
 type marker;
 [@bs.obj]
 external marker:
   (~id: string, ~coordinate: LatLng.t, ~title: string, ~description: string) =>
-  marker =
-  "";
+  marker;
 
 type kmlContainer = {. "markers": array(marker)};
 
@@ -74,32 +70,29 @@ type location = {
 };
 
 type duration;
-[@bs.obj] external duration: (~duration: float) => duration = "";
+[@bs.obj] external duration: (~duration: float) => duration;
 
 type fitConfig;
 [@bs.obj]
-external fitConfig: (~edgePadding: edgePadding, ~animated: bool) => fitConfig =
-  "";
+external fitConfig: (~edgePadding: edgePadding, ~animated: bool) => fitConfig;
 
-[@bs.send] external getCamera: (element, unit) => unit = "";
-[@bs.send] external animateCamera: (element, camera, duration) => unit = "";
-[@bs.send] external setCamera: (element, camera, duration) => unit = "";
-[@bs.send] external animateToRegion: (element, Region.t, float) => unit = "";
+[@bs.send] external getCamera: (element, unit) => unit;
+[@bs.send] external animateCamera: (element, camera, duration) => unit;
+[@bs.send] external setCamera: (element, camera, duration) => unit;
+[@bs.send] external animateToRegion: (element, Region.t, float) => unit;
 [@bs.send]
-external getMapBoundaries: (element, unit) => Js.Promise.t(mapBoundaries) =
-  "";
-[@bs.send] external setMapBoundaries: (element, mapBoundaries) => unit = "";
-[@bs.send] external setIndoorActiveLevelIndex: (element, int) => unit = "";
-[@bs.send] external fitToElements: (element, bool) => unit = "";
+external getMapBoundaries: (element, unit) => Js.Promise.t(mapBoundaries);
+[@bs.send] external setMapBoundaries: (element, mapBoundaries) => unit;
+[@bs.send] external setIndoorActiveLevelIndex: (element, int) => unit;
+[@bs.send] external fitToElements: (element, bool) => unit;
 [@bs.send]
-external fitToSuppliedMarkers: (element, array(string), fitConfig) => unit =
-  "";
+external fitToSuppliedMarkers: (element, array(string), fitConfig) => unit;
 [@bs.send]
-external fitToCoordinates: (element, array(LatLng.t), fitConfig) => unit = "";
+external fitToCoordinates: (element, array(LatLng.t), fitConfig) => unit;
 [@bs.send]
-external pointForCoordinate: (element, LatLng.t) => Js.Promise.t(point) = "";
+external pointForCoordinate: (element, LatLng.t) => Js.Promise.t(point);
 [@bs.send]
-external coordinateForPoint: (element, point) => Js.Promise.t(LatLng.t) = "";
+external coordinateForPoint: (element, point) => Js.Promise.t(LatLng.t);
 [@bs.send]
 external getMarkersFrames:
   (element, bool) =>
@@ -110,10 +103,57 @@ external getMarkersFrames:
       "point": point,
       "frame": frame,
     },
-  }) =
-  "";
+  });
 
 module Make = (T: {type t;}) => {
+  module MapViewEvent =
+    ReactNative.Event.SyntheticEvent({
+      type _payload = copos;
+    });
+
+  module UserLocationChangeEvent =
+    ReactNative.Event.SyntheticEvent({
+      type _payload = {. coordinate: location};
+    });
+
+  module PoiClickEvent =
+    ReactNative.Event.SyntheticEvent({
+      type _payload = poi;
+    });
+
+  module MarkerDragEvent =
+    ReactNative.Event.SyntheticEvent({
+      type _payload = {
+        .
+        coordinate: LatLng.t,
+        position: point,
+      };
+    });
+
+  module MarkerDragStartEndEvent =
+    ReactNative.Event.SyntheticEvent({
+      type _payload = {
+        .
+        coordinate: LatLng.t,
+        position: point,
+      };
+    });
+
+  module KmlReadyEvent =
+    ReactNative.Event.SyntheticEvent({
+      type _payload = kmlContainer;
+    });
+
+  module IndoorLevelActivatedEvent =
+    ReactNative.Event.SyntheticEvent({
+      type _payload = indoorLevel;
+    });
+
+  module IndoorBuildingFocusedEvent =
+    ReactNative.Event.SyntheticEvent({
+      type _payload = indoorBuilding;
+    });
+
   [@react.component] [@bs.module "react-native-maps/lib/components/MapView"]
   external make:
     (
@@ -182,53 +222,22 @@ module Make = (T: {type t;}) => {
       ~onCalloutPress: unit => unit=?,
       ~onRegionChange: Region.t => unit=?,
       ~onRegionChangeComplete: Region.t => unit=?,
-      ~onPress: ReactNative.Event.syntheticEvent(copos) => unit=?,
-      ~onDoublePress: ReactNative.Event.syntheticEvent(copos) => unit=?,
-      ~onLongPress: ReactNative.Event.syntheticEvent(copos) => unit=?,
-      ~onPanDrag: ReactNative.Event.syntheticEvent(copos) => unit=?,
-      ~onPoiClick: ReactNative.Event.syntheticEvent(poi) => unit=?,
+      ~onPress: MapViewEvent.t => unit=?,
+      ~onDoublePress: MapViewEvent.t => unit=?,
+      ~onLongPress: MapViewEvent.t => unit=?,
+      ~onPanDrag: MapViewEvent.t => unit=?,
+      ~onPoiClick: PoiClickEvent.t => unit=?,
       ~onMapReady: unit => unit=?,
       ~onMarkerPress: unit => unit=?,
       ~onMarkerDeselect: unit => unit=?,
       ~onMarkerSelect: unit => unit=?,
-      ~onMarkerDrag: ReactNative.Event.syntheticEvent({
-                       .
-                       coordinate: LatLng.t,
-                       position: point,
-                     }) =>
-                     unit
-                       =?,
-      ~onMarkerDragStart: ReactNative.Event.syntheticEvent({
-                            .
-                            coordinate: LatLng.t,
-                            position: point,
-                          }) =>
-                          unit
-                            =?,
-      ~onMarkerDragEnd: ReactNative.Event.syntheticEvent({
-                          .
-                          coordinate: LatLng.t,
-                          position: point,
-                        }) =>
-                        unit
-                          =?,
-      ~onKmlReady: ReactNative.Event.syntheticEvent(kmlContainer) => unit=?,
-      ~onIndoorLevelActivated: ReactNative.Event.syntheticEvent(
-                                 indoorLevel,
-                               ) =>
-                               unit
-                                 =?,
-      ~onIndoorBuildingFocused: ReactNative.Event.syntheticEvent(
-                                  indoorBuilding,
-                                ) =>
-                                unit
-                                  =?,
-      ~onUserLocationChange: ReactNative.Event.syntheticEvent({
-                               .
-                               coordinate: location,
-                             }) =>
-                             unit
-                               =?,
+      ~onMarkerDrag: MarkerDragEvent.t => unit=?,
+      ~onMarkerDragStart: MarkerDragStartEndEvent.t => unit=?,
+      ~onMarkerDragEnd: MarkerDragStartEndEvent.t => unit=?,
+      ~onKmlReady: KmlReadyEvent.t => unit=?,
+      ~onIndoorLevelActivated: IndoorLevelActivatedEvent.t => unit=?,
+      ~onIndoorBuildingFocused: IndoorBuildingFocusedEvent.t => unit=?,
+      ~onUserLocationChange: UserLocationChangeEvent.t => unit=?,
       // View props
       ~accessibilityComponentType: [@bs.string] [
                                      | `none
@@ -257,7 +266,7 @@ module Make = (T: {type t;}) => {
                             | `imagebutton
                           ]
                             =?,
-      ~accessibilityStates: array(ReactNative.AccessibilityState.t)=?,
+      ~accessibilityStates: array(ReactNative.Accessibility.state)=?,
       ~accessibilityTraits: array(ReactNative.AccessibilityTrait.t)=?,
       ~accessibilityViewIsModal: bool=?,
       ~accessible: bool=?,

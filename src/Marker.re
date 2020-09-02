@@ -2,6 +2,11 @@ include NativeElement;
 include Shared;
 
 module Make = (T: {type t;}) => {
+  module MarkerEvent =
+    ReactNative.Event.SyntheticEvent({
+      type _payload = copos;
+    });
+
   [@react.component] [@bs.module "react-native-maps/lib/components/MapMarker"]
   external make:
     (
@@ -25,13 +30,13 @@ module Make = (T: {type t;}) => {
       ~tracksInfoWindowChanges: bool=?,
       ~stopPropagation: bool=?,
       ~opacity: float=?,
-      ~onPress: ReactNative.Event.syntheticEvent(copos) => unit=?,
-      ~onSelect: ReactNative.Event.syntheticEvent(copos) => unit=?,
-      ~onDeselect: ReactNative.Event.syntheticEvent(copos) => unit=?,
+      ~onPress: MarkerEvent.t => unit=?,
+      ~onSelect: MarkerEvent.t => unit=?,
+      ~onDeselect: MarkerEvent.t => unit=?,
       ~onCalloutPress: unit => unit=?,
-      ~onDragStart: ReactNative.Event.syntheticEvent(copos) => unit=?,
-      ~onDrag: ReactNative.Event.syntheticEvent(copos) => unit=?,
-      ~onDragEnd: ReactNative.Event.syntheticEvent(copos) => unit=?,
+      ~onDragStart: MarkerEvent.t => unit=?,
+      ~onDrag: MarkerEvent.t => unit=?,
+      ~onDragEnd: MarkerEvent.t => unit=?,
       // View props
       ~accessibilityComponentType: [@bs.string] [
                                      | `none
@@ -60,7 +65,7 @@ module Make = (T: {type t;}) => {
                             | `imagebutton
                           ]
                             =?,
-      ~accessibilityStates: array(ReactNative.AccessibilityState.t)=?,
+      ~accessibilityStates: array(ReactNative.Accessibility.state)=?,
       ~accessibilityTraits: array(ReactNative.AccessibilityTrait.t)=?,
       ~accessibilityViewIsModal: bool=?,
       ~accessible: bool=?,
@@ -111,12 +116,12 @@ module Make = (T: {type t;}) => {
     "default";
 };
 
-[@bs.send] external showCallout: (element, unit) => unit = "";
-[@bs.send] external hideCallout: (element, unit) => unit = "";
-[@bs.send] external redrawCallout: (element, unit) => unit = "";
+[@bs.send] external showCallout: (element, unit) => unit;
+[@bs.send] external hideCallout: (element, unit) => unit;
+[@bs.send] external redrawCallout: (element, unit) => unit;
 [@bs.send]
-external animateMarkerToCoordinate: (element, LatLng.t, float) => unit = "";
-[@bs.send] external redraw: (element, unit) => unit = "";
+external animateMarkerToCoordinate: (element, LatLng.t, float) => unit;
+[@bs.send] external redraw: (element, unit) => unit;
 
 include Make({
   type t = LatLng.t;

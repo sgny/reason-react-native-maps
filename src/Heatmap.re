@@ -8,8 +8,7 @@ external gradient:
     ~colorMapSize: int=?,
     unit
   ) =>
-  gradient =
-  "";
+  gradient;
 
 [@react.component] [@bs.module "react-native-maps/lib/components/MapHeatmap"]
 external make:
@@ -45,7 +44,7 @@ external make:
                           | `imagebutton
                         ]
                           =?,
-    ~accessibilityStates: array(ReactNative.AccessibilityState.t)=?,
+    ~accessibilityStates: array(ReactNative.Accessibility.state)=?,
     ~accessibilityTraits: array(ReactNative.AccessibilityTrait.t)=?,
     ~accessibilityViewIsModal: bool=?,
     ~accessible: bool=?,
