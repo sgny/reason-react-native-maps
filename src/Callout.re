@@ -6,13 +6,18 @@ let calloutPress = "callout-press";
 [@bs.inline]
 let markerOverlayPress = "marker-overlay-press";
 
+module OnPressEvent =
+  ReactNative.Event.SyntheticEvent({
+    type _payload = {. action: action};
+  });
+
 [@react.component] [@bs.module "react-native-maps/lib/components/MapCallout"]
 // supports view props
 external make:
   (
     ~tooltip: bool=?,
     ~alphaHitTest: bool=?,
-    ~onPress: ReactNative.Event.syntheticEvent({. action: action}) => unit=?,
+    ~onPress: OnPressEvent.t => unit=?,
     // View props
     ~accessibilityComponentType: [@bs.string] [
                                    | `none
@@ -40,7 +45,7 @@ external make:
                           | `imagebutton
                         ]
                           =?,
-    ~accessibilityStates: array(ReactNative.AccessibilityState.t)=?,
+    ~accessibilityStates: array(ReactNative.Accessibility.state)=?,
     ~accessibilityTraits: array(ReactNative.AccessibilityTrait.t)=?,
     ~accessibilityViewIsModal: bool=?,
     ~accessible: bool=?,

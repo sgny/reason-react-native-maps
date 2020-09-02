@@ -1,1 +1,8 @@
-/* This output is empty. Its source's type definitions, externals and/or unused code got optimized away. */
+"use strict";
+
+var Event$ReactNative = require("reason-react-native/src/apis/Event.bs.js");
+
+var OnPressEvent = Event$ReactNative.SyntheticEvent({});
+
+exports.OnPressEvent = OnPressEvent;
+/* OnPressEvent Not a pure module */

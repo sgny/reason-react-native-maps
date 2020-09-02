@@ -3,19 +3,22 @@ type point = Shared.point;
 let defaultAction = "overlay-press";
 
 module Make = {
+  module OnPressEvent =
+    ReactNative.Event.SyntheticEvent({
+      type _payload = {
+        .
+        "action": string,
+        "coordinate": LatLng.t,
+        "position": point,
+      };
+    });
+
   [@react.component] [@bs.module "react-native-maps/lib/components/MapOverlay"]
   external make:
     (
       ~image: ReactNative.Image.Source.t,
       ~bounds: (LatLng.t, LatLng.t)=?,
-      ~onPress: ReactNative.Event.syntheticEvent({
-                  .
-                  "action": string,
-                  "coordinate": LatLng.t,
-                  "position": point,
-                }) =>
-                unit
-                  =?,
+      ~onPress: OnPressEvent.t => unit=?,
       ~opacity: float=?,
       ~tappable: bool=?,
       // View props
@@ -46,7 +49,7 @@ module Make = {
                             | `imagebutton
                           ]
                             =?,
-      ~accessibilityStates: array(ReactNative.AccessibilityState.t)=?,
+      ~accessibilityStates: array(ReactNative.Accessibility.state)=?,
       ~accessibilityTraits: array(ReactNative.AccessibilityTrait.t)=?,
       ~accessibilityViewIsModal: bool=?,
       ~accessible: bool=?,
